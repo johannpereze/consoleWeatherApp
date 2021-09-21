@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/johannpereze/consoleWeatherApp#readme",
   "dependencies": {
-    "color": "^4.0.1",
+    "colors": "^1.4.0",
     "inquirer": "^8.1.5"
   }
 }
