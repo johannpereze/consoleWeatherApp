@@ -1,0 +1,29 @@
+{
+  "name": "consoleweatherapp",
+  "version": "1.0.0",
+  "description": "Aplicación de clima basada en consola desarrollada en nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johannpereze/consoleWeatherApp.git"
+  },
+  "keywords": [
+    "nodejs",
+    "weather",
+    "console"
+  ],
+  "author": "johannpereze",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johannpereze/consoleWeatherApp/issues"
+  },
+  "homepage": "https://github.com/johannpereze/consoleWeatherApp#readme",
+  "dependencies": {
+    "color": "^4.0.1",
+    "inquirer": "^8.1.5"
+  }
+}
