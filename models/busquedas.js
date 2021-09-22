@@ -9,27 +9,30 @@ class Busquedas {
 
   get paramsMapbox() {
     return {
-      access_token:
-        process.env.MAPBOX_KEY,
+      access_token: process.env.MAPBOX_KEY,
       limit: 5,
       language: "es",
     };
   }
 
   async ciudad(lugar = "") {
-    //peticion http
-    // console.log(lugar);
+    try {
+      //peticion http
+      // console.log(lugar);
 
-    const instance = axios.create({
-      baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json`,
-      params: this.paramsMapbox,
-    });
+      const instance = axios.create({
+        baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json`,
+        params: this.paramsMapbox,
+      });
 
-    const resp = await instance.get();
+      const resp = await instance.get();
 
-    console.log(resp.data);
+      console.log(resp.data.features);
 
-    return []; //retornar los lugares
+      return []; //retornar los lugares
+    } catch (error) {
+      return [];
+    }
   }
 }
 
