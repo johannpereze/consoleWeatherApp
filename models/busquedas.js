@@ -23,18 +23,26 @@ class Busquedas {
       });
 
       const resp = await instance.get();
-    //   console.log(resp.data.features);
+
       return resp.data.features.map((lugar) => ({
         id: lugar.id,
         nombre: lugar.place_name,
         lng: lugar.center[0],
         lat: lugar.center[1],
       }));
-
-      return []; //retornar los lugares
     } catch (error) {
       return [];
     }
+  }
+
+  async climaLugar(lat, lon){
+      try {
+
+        
+          
+      } catch (error) {
+          console.log(error);
+      }
   }
 }
 
