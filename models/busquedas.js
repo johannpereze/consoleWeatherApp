@@ -1,11 +1,11 @@
+const fs = require("fs");
+
 const { default: axios } = require("axios");
 
 class Busquedas {
-  historial = ["Bogotá", "Medellín", "Caldas"];
-
-  constructor() {
-    //TODO: leeer DB si existe
-  }
+  historial = [];
+  dbPath = "./db/database.json";
+  constructor() {}
 
   get paramsMapbox() {
     return {
@@ -52,7 +52,7 @@ class Busquedas {
 
       const resp = await instance.get();
       //   console.log(resp.data);
-      const {main, weather} = resp.data
+      const { main, weather } = resp.data;
       return {
         temperatura: main.temp,
         minima: main.temp_min,
@@ -63,6 +63,19 @@ class Busquedas {
       console.log(error);
     }
   }
+
+  agregarHistorial(lugar = "") {
+    if (!this.historial.includes(lugar)) {
+      this.historial.unshift(lugar);
+    }
+    this.guardarDB();
+  }
+
+  guardarDB() {
+    fs.writeFileSync(this.dbPath, JSON.stringify(this.historial));
+  }
+
+  leerDB() {}
 }
 
 module.exports = Busquedas;
