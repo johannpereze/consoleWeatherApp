@@ -69,6 +69,7 @@ class Busquedas {
   agregarHistorial(lugar = "") {
     if (!this.historial.includes(lugar)) {
       this.historial.unshift(lugar);
+      this.historial = this.historial.splice(0,5)
     }
     this.guardarDB();
   }
