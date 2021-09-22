@@ -5,7 +5,9 @@ const { default: axios } = require("axios");
 class Busquedas {
   historial = [];
   dbPath = "./db/database.json";
-  constructor() {}
+  constructor() {
+    this.leerDB();
+  }
 
   get paramsMapbox() {
     return {
@@ -72,10 +74,20 @@ class Busquedas {
   }
 
   guardarDB() {
-    fs.writeFileSync(this.dbPath, JSON.stringify(this.historial));
+    const payload = {
+      historial: this.historial,
+    };
+    fs.writeFileSync(this.dbPath, JSON.stringify(payload));
   }
 
-  leerDB() {}
+  leerDB() {
+    if (!fs.existsSync(this.dbPath)) {
+      return;
+    }
+    const info = fs.readFileSync(this.dbPath, { encoding: "utf-8" });
+    const data = JSON.parse(info);
+    this.historial = data.historial;
+  }
 }
 
 module.exports = Busquedas;
