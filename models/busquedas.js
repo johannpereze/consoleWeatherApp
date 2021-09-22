@@ -1,25 +1,36 @@
 const { default: axios } = require("axios");
 
-
 class Busquedas {
+  historial = ["Bogotá", "Medellín", "Caldas"];
 
-historial = ['Bogotá', 'Medellín', 'Caldas']
-
-constructor(){
+  constructor() {
     //TODO: leeer DB si existe
-}
+  }
 
-async ciudad(lugar = ''){
+  get paramsMapbox() {
+    return {
+      access_token:
+        process.env.MAPBOX_KEY,
+      limit: 5,
+      language: "es",
+    };
+  }
+
+  async ciudad(lugar = "") {
     //peticion http
     // console.log(lugar);
 
-    const resp = await axios.get('https://reqres.in/api/users?page=2')
-    console.log(resp);
-    
+    const instance = axios.create({
+      baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json`,
+      params: this.paramsMapbox,
+    });
 
-    
-    return [];//retornar los lugares
-}
+    const resp = await instance.get();
+
+    console.log(resp.data);
+
+    return []; //retornar los lugares
+  }
 }
 
 module.exports = Busquedas;
